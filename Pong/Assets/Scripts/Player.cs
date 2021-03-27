@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public float speed;
-
     private Rigidbody2D body;
+
+    float screenHalfWidth;
 
     void Awake() {
         body = GetComponent<Rigidbody2D>();
+        screenHalfWidth = Camera.main.aspect * Camera.main.orthographicSize;
     }
 
-    void FixedUpdate() {
-        float input = Input.GetAxisRaw("Horizontal");
+    void Update() {
+        float xScreen = Input.mousePosition.x;
 
-        body.velocity = Vector2.right * input * speed;
+        Vector2 pos = new Vector2(((2 * screenHalfWidth * xScreen) / Screen.width) - screenHalfWidth, transform.position.y);
+
+        body.MovePosition(pos);
     }
 }
