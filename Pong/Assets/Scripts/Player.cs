@@ -18,5 +18,8 @@ public class Player : MonoBehaviour {
         Vector2 pos = new Vector2(((2 * screenHalfWidth * xScreen) / Screen.width) - screenHalfWidth, transform.position.y);
 
         body.MovePosition(pos);
+
+        float input = Input.GetAxis("Horizontal");
+        body.MoveRotation(-65 * input);
     }
 }
