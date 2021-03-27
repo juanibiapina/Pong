@@ -26,23 +26,29 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        GameObject ball = Instantiate(ballPrefab, Vector3.zero, Quaternion.identity);
-        ball.GetComponent<Rigidbody2D>().velocity = Vector2.up * ballSpeed;
+        Instantiate(ballPrefab, Vector3.zero, Quaternion.identity);
+        Invoke("StartGame", 2);
     }
 
-    void Update() {
+    void StartGame() {
+        GameObject ball = GameObject.FindGameObjectWithTag("Ball");
+        ball.GetComponent<Rigidbody2D>().velocity = Vector2.up * ballSpeed;
     }
 
     private void ScoreOpponent(GameObject ball) {
         Destroy(ball);
         opponentScore++;
         scoreOpponent.text = opponentScore.ToString();
+        Instantiate(ballPrefab, Vector3.zero, Quaternion.identity);
+        Invoke("StartGame", 2);
     }
 
     private void ScorePlayer(GameObject ball) {
         Destroy(ball);
         playerScore++;
         scorePlayer.text = playerScore.ToString();
+        Instantiate(ballPrefab, Vector3.zero, Quaternion.identity);
+        Invoke("StartGame", 2);
     }
 
     private void UpdateScreenEdges() {

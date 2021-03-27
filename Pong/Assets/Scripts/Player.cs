@@ -20,6 +20,6 @@ public class Player : MonoBehaviour {
         body.MovePosition(pos);
 
         float input = Input.GetAxis("Horizontal");
-        body.MoveRotation(-65 * input);
+        body.MoveRotation(-35 * input);
     }
 }
